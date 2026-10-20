@@ -110,6 +110,7 @@ input, select, textarea {
   top: 0;
   z-index: 50;
   background-color: rgba(11, 15, 25, 0.85);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-surface-border-subtle);
   padding: 1rem 1.5rem;
@@ -204,6 +205,7 @@ input, select, textarea {
 .hero-title span {
   background: linear-gradient(135deg, #a5b4fc, #38bdf8);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -330,6 +332,7 @@ input, select, textarea {
   margin-bottom: 1.25rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
