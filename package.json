@@ -1,0 +1,19 @@
+{
+  "name": "syncora-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Syncora - Concurrency-Safe Workshop & Event Booking System",
+  "scripts": {
+    "start:backend": "npm --prefix server start",
+    "dev:backend": "npm --prefix server run dev",
+    "dev:frontend": "npm --prefix client run dev",
+    "build:frontend": "npm --prefix client run build",
+    "prisma:generate": "npm --prefix server run prisma:generate",
+    "prisma:migrate": "npm --prefix server run prisma:migrate",
+    "prisma:seed": "npm --prefix server run prisma:seed",
+    "test:backend": "npm --prefix server test",
+    "test:frontend": "npm --prefix client test",
+    "test": "npm run test:backend && npm run test:frontend",
+    "load-test": "npm --prefix server run load-test"
+  }
+}
