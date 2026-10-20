@@ -19,6 +19,7 @@ Syncora is a full-stack web platform built for university campuses to discover w
 ## 🛠️ Technology Stack
 
 ### Backend
+
 - **Runtime:** Node.js (v24 LTS / ES Modules)
 - **Framework:** Express.js 4
 - **ORM:** Prisma ORM 6
@@ -27,6 +28,7 @@ Syncora is a full-stack web platform built for university campuses to discover w
 - **Testing:** Node.js Native Test Runner (`node:test`, `node:assert`), Supertest
 
 ### Frontend
+
 - **Framework:** React 19 with Vite 6
 - **Routing:** React Router 7
 - **Server State:** TanStack Query v5
@@ -39,7 +41,7 @@ Syncora is a full-stack web platform built for university campuses to discover w
 
 ## 📁 Repository Structure
 
-```
+```text
 syncora/
 ├── client/
 │   ├── src/
@@ -112,18 +114,23 @@ syncora/
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - **Node.js** >= 18 (Tested on Node.js v24)
 - **PostgreSQL** 14+ (Tested on PostgreSQL 18)
 - **Git**
 
 ### 2. Database Setup
+
 Ensure PostgreSQL is running on port 5432 and create the `syncora` database:
+
 ```sql
 CREATE DATABASE syncora;
 ```
 
 ### 3. Environment Configuration
+
 Backend (`server/.env`):
+
 ```env
 PORT=3001
 NODE_ENV=development
@@ -132,12 +139,15 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/syncora?schema=publi
 ```
 
 Frontend (`client/.env.development`):
+
 ```env
 VITE_API_URL=http://localhost:3001
 ```
 
 ### 4. Installation & Database Migration
+
 From the repository root:
+
 ```bash
 # Install dependencies for both server and client
 cd server && npm install
@@ -156,25 +166,29 @@ npm run prisma:seed
 ## 💻 Running the Application
 
 ### Start the Backend (Port 3001)
+
 ```bash
 npm run dev:backend
 # Or: cd server && npm run dev
 ```
 
 ### Start the Frontend (Port 5173)
+
 ```bash
 npm run dev:frontend
 # Or: cd client && npm run dev
 ```
 
-Visit **http://localhost:5173** in your browser.
+Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## 🧪 Testing & Verification
 
 ### Automated Test Suites
+
 Run all backend integration tests and frontend Vitest component tests:
+
 ```bash
 npm run test
 ```
@@ -183,11 +197,15 @@ npm run test
 - **Frontend tests:** 6 tests covering workshop cards, availability badges, booking form validation, and sold-out states.
 
 ### Concurrency Load Test
+
 Execute the automated concurrency test against the 5-seat workshop:
+
 ```bash
 npm run load-test
 ```
+
 Dispatches 20 parallel booking requests via `Promise.all`:
+
 - **5 requests succeed** (`201 Created`)
 - **15 requests reject** (`409 SOLD_OUT`)
 - **0 errors** (`500`)
@@ -212,4 +230,5 @@ Dispatches 20 parallel booking requests via `Promise.all`:
 ---
 
 ## 📝 License
+
 MIT License. Created for academic and demonstration purposes.
