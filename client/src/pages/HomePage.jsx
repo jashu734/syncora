@@ -3,7 +3,7 @@ import { useWorkshopsQuery } from '../features/workshops/workshops.queries.js';
 import WorkshopCard from '../components/WorkshopCard.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import ErrorMessage from '../components/ErrorMessage.jsx';
-import { ShieldCheck, Cpu, Database, RefreshCw, Zap } from 'lucide-react';
+import { RefreshCw, Zap } from 'lucide-react';
 
 export function HomePage() {
   const { data: workshops, isLoading, error, refetch, isFetching } = useWorkshopsQuery();
@@ -22,45 +22,6 @@ export function HomePage() {
         <p className="hero-subtitle">
           Discover hands-on university workshops, inspect real-time seat availability, and experience race-condition-proof reservations powered by PostgreSQL transactions.
         </p>
-      </section>
-
-      {/* Architectural Guarantees Callout */}
-      <section className="architecture-callout">
-        <div className="callout-header">
-          <ShieldCheck size={22} color="var(--color-primary)" />
-          <span>Engineered Against Overselling & Data Corruption</span>
-        </div>
-        <div className="callout-grid">
-          <div className="callout-card">
-            <div className="callout-card-title">
-              <Cpu size={16} color="var(--color-accent)" />
-              <span>Conditional Atomic Decrement</span>
-            </div>
-            <p className="callout-card-desc">
-              Executes <code>UPDATE "Workshop" SET "seatsLeft" = "seatsLeft" - 1 WHERE id = $1 AND "seatsLeft" &gt; 0</code> inside PostgreSQL to eliminate race conditions.
-            </p>
-          </div>
-
-          <div className="callout-card">
-            <div className="callout-card-title">
-              <Database size={16} color="var(--color-accent)" />
-              <span>Strict Transaction Boundaries</span>
-            </div>
-            <p className="callout-card-desc">
-              Seat updates and booking creations execute in one transaction. If a duplicate booking or database failure occurs, seats are automatically restored by rollback.
-            </p>
-          </div>
-
-          <div className="callout-card">
-            <div className="callout-card-title">
-              <ShieldCheck size={16} color="var(--color-accent)" />
-              <span>Compound Unique Constraint</span>
-            </div>
-            <p className="callout-card-desc">
-              PostgreSQL enforces <code>@@unique([workshopId, studentEmail])</code>, guaranteeing a student can never book the same workshop twice even under simultaneous clicks.
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* Workshop Listing Section */}
