@@ -178,10 +178,6 @@ export function BookingForm({ workshop }) {
           )}
         </button>
       </form>
-
-      <div style={{ marginTop: '1.25rem', padding: '0.85rem', backgroundColor: 'var(--color-bg-subtle)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-surface-border-subtle)', fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
-        🔒 <strong>Concurrency Guarantee:</strong> Seats are decremented using conditional atomic database updates (<code>seatsLeft &gt; 0</code>). Overselling is mathematically prevented even under millisecond-level parallel requests.
-      </div>
     </div>
   );
 }
