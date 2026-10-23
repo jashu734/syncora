@@ -4,6 +4,15 @@ Syncora is a full-stack web platform built for university campuses to discover w
 
 ---
 
+## 🌐 Links & Live Deployment
+
+- **GitHub Repository:** [https://github.com/jashu734/syncora](https://github.com/jashu734/syncora)
+- **Frontend App (Vercel):** [https://syncora-teal.vercel.app](https://syncora-teal.vercel.app)
+- **Backend API (Vercel):** [https://server-iota-six-38.vercel.app](https://server-iota-six-38.vercel.app)
+- **API Health Check:** [https://server-iota-six-38.vercel.app/health](https://server-iota-six-38.vercel.app/health)
+
+---
+
 ## 🌟 Key Features
 
 - **Concurrency-Safe Seat Reservation:** Guarantees zero overselling when multiple students attempt to book the last remaining seats at the exact same millisecond.
@@ -99,11 +108,6 @@ syncora/
 │   ├── tests/
 │   ├── .env.example
 │   └── package.json
-├── docs/
-│   ├── API.md
-│   ├── ARCHITECTURE.md
-│   ├── TESTING.md
-│   └── DEMO_SCRIPT.md
 ├── BUILD_STATUS.md
 ├── package.json
 └── README.md
@@ -121,11 +125,36 @@ syncora/
 
 ### 2. Database Setup
 
-Ensure PostgreSQL is running on port 5432 and create the `syncora` database:
+#### Start PostgreSQL
+
+Ensure PostgreSQL is running before starting the backend:
+
+**Windows (PowerShell):**
+```powershell
+# Start as Windows Service (Admin PowerShell)
+Start-Service postgresql-x64-18
+
+# Or start directly via pg_ctl
+& "C:\Program Files\PostgreSQL\18\bin\pg_ctl.exe" -D "C:\Program Files\PostgreSQL\18\data" start
+```
+
+**macOS / Linux:**
+```bash
+# macOS (Homebrew)
+brew services start postgresql
+
+# Linux (systemd)
+sudo systemctl start postgresql
+```
+
+#### Create the Database
+
+Create the `syncora` database on port 5432:
 
 ```sql
 CREATE DATABASE syncora;
 ```
+*(Or via terminal: `createdb -U postgres syncora`)*
 
 ### 3. Environment Configuration
 
@@ -193,7 +222,7 @@ Run all backend integration tests and frontend Vitest component tests:
 npm run test
 ```
 
-- **Backend tests:** 12 tests covering `/health`, workshop retrieval, validation, successful booking, duplicate booking prevention, sold out handling, and cancellation seat restoration.
+- **Backend tests:** 14 tests covering `/health`, workshop retrieval, categories, search, validation, successful booking, duplicate booking prevention, sold out handling, and cancellation seat restoration.
 - **Frontend tests:** 6 tests covering workshop cards, availability badges, booking form validation, and sold-out states.
 
 ### Concurrency Load Test
@@ -210,15 +239,6 @@ Dispatches 20 parallel booking requests via `Promise.all`:
 - **15 requests reject** (`409 SOLD_OUT`)
 - **0 errors** (`500`)
 - **Final seatsLeft = 0**, **Committed DB rows = 5**
-
----
-
-## 📖 Detailed Documentation
-
-- [API Specification (docs/API.md)](docs/API.md) — Complete endpoint reference, status codes, and JSON schemas.
-- [Architecture & Concurrency Model (docs/ARCHITECTURE.md)](docs/ARCHITECTURE.md) — In-depth breakdown of row locks, transactions, and race-condition defenses.
-- [Testing & Concurrency Demonstration Guide (docs/TESTING.md)](docs/TESTING.md) — How to reproduce and verify the load test results.
-- [Faculty Presentation Script (docs/DEMO_SCRIPT.md)](docs/DEMO_SCRIPT.md) — 2–3 minute speaking script and presentation guide for evaluation committees.
 
 ---
 
